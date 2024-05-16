@@ -1,8 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000/api/';
+axios.defaults.baseURL = 'https://events-registration-api.onrender.com/';
 
-export const getData = async () => {
-  const { data } = await axios("contacts");
+export const getEvents = async () => {
+  const { data } = await axios('api/events/');
+  console.log(data);
   return data;
 };
