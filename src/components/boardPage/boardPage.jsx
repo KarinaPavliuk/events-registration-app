@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { getEvents } from '../../API/events';
 import Pagination from '../Pagination/pagination';
+import RegistrationPage from '../RegistrationPage/registrationPage';
+import ViewPage from '../ViewPage/viewPage';
 
 const BoardPage = () => {
   const [events, setEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showView, setShowView] = useState(false);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -32,6 +36,14 @@ const BoardPage = () => {
     }
   };
 
+  const handleRegisterClick = () => {
+    setShowRegister(true);
+  };
+
+  const handleViewClick = () => {
+    setShowView(true);
+  };
+
   return (
     <div>
       <header className="app-header">
@@ -47,8 +59,12 @@ const BoardPage = () => {
                   <p>{description}</p>
                   <p>{date}</p>
                   <p>{organizer}</p>
-                  <button>register</button>
-                  <button>view</button>
+                  <button onClick={handleRegisterClick} type="button">
+                    register
+                  </button>
+                  <button onClick={handleViewClick} type="button">
+                    view
+                  </button>
                 </li>
               )
             )}
@@ -63,6 +79,8 @@ const BoardPage = () => {
           paginate={paginate}
         />
       </footer>
+      {showRegister && <RegistrationPage />}
+      {showView && <ViewPage />}
     </div>
   );
 };
