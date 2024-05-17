@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getUsers, register } from '../../API/register';
 
-const RegistrationPage = eventId => {
+const RegistrationPage = ({ eventId }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
