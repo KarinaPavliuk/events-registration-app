@@ -1,6 +1,6 @@
 // import { lazy } from 'react';
 // import { Route, Routes } from 'react-router-dom';
-import BoardPage from './components/boardPage/boardPage';
+import BoardPage from './components/BoardPage/boardPage';
 // import './App.css';
 
 // const BoardPage = lazy(() => import('./components/boardPage/boardPage'));
