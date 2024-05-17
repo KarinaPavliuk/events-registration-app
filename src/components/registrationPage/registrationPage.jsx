@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getUsers, register } from '../../API/register';
 
-const RegistrationPage = () => {
+const RegistrationPage = eventId => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const RegistrationPage = () => {
     const email = form.email.value;
     const date = form.date.value;
     const radio = form.radio.value;
+    const event = form.event.value;
 
     const regiterUser = users.some(user => user.email === email);
 

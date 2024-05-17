@@ -10,6 +10,7 @@ const BoardPage = () => {
   const [itemsPerPage] = useState(6);
   const [showRegister, setShowRegister] = useState(false);
   const [showView, setShowView] = useState(false);
+  const [eventId, setEventId] = useState(null);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -36,11 +37,13 @@ const BoardPage = () => {
     }
   };
 
-  const handleRegisterClick = () => {
+  const handleRegisterClick = id => {
+    setEventId(id.toString());
     setShowRegister(true);
   };
 
-  const handleViewClick = () => {
+  const handleViewClick = id => {
+    setEventId(id.toString());
     setShowView(true);
   };
 
@@ -59,10 +62,10 @@ const BoardPage = () => {
                   <p>{description}</p>
                   <p>{date}</p>
                   <p>{organizer}</p>
-                  <button onClick={handleRegisterClick} type="button">
+                  <button onClick={handleRegisterClick(_id)} type="button">
                     register
                   </button>
-                  <button onClick={handleViewClick} type="button">
+                  <button onClick={handleViewClick(_id)} type="button">
                     view
                   </button>
                 </li>
@@ -79,8 +82,8 @@ const BoardPage = () => {
           paginate={paginate}
         />
       </footer>
-      {showRegister && <RegistrationPage />}
-      {showView && <ViewPage />}
+      {showRegister && <RegistrationPage eventId={eventId} />}
+      {showView && <ViewPage eventId={eventId} />}
     </div>
   );
 };

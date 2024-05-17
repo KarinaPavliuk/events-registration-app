@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getUsers } from '../../API/register';
 
-const ViewPage = () => {
+const ViewPage = eventId => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
