@@ -24,14 +24,13 @@ const RegistrationPage = eventId => {
     const email = form.email.value;
     const date = form.date.value;
     const radio = form.radio.value;
-    const event = form.event.value;
 
     const regiterUser = users.some(user => user.email === email);
 
     if (regiterUser) {
       alert('You are already registered 😀');
     } else {
-      register({ name, email, date, radio });
+      register({ name, email, date, radio, eventId });
       alert('You are successfully registered 😉');
     }
   };

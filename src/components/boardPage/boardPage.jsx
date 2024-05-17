@@ -62,10 +62,13 @@ const BoardPage = () => {
                   <p>{description}</p>
                   <p>{date}</p>
                   <p>{organizer}</p>
-                  <button onClick={handleRegisterClick(_id)} type="button">
+                  <button
+                    onClick={() => handleRegisterClick(_id)}
+                    type="button"
+                  >
                     register
                   </button>
-                  <button onClick={handleViewClick(_id)} type="button">
+                  <button onClick={() => handleViewClick(_id)} type="button">
                     view
                   </button>
                 </li>
