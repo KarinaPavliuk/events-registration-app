@@ -3,6 +3,7 @@ import { getEvents } from '../../API/events';
 import Pagination from '../Pagination/pagination';
 import RegistrationPage from '../RegistrationPage/registrationPage';
 import ViewPage from '../ViewPage/viewPage';
+import css from './boardPage.module.css';
 
 const BoardPage = () => {
   const [events, setEvents] = useState([]);
@@ -48,29 +49,38 @@ const BoardPage = () => {
   };
 
   return (
-    <div>
-      <header className="app-header">
+    <div className={css.container}>
+      <header className={css.header}>
         <h1>Events</h1>
       </header>
       <main className="app-main">
         {events && (
-          <ul>
+          <ul className={css.boardList}>
             {currentItems.map(
               ({ _id, title, description, date, organizer }) => (
-                <li key={_id}>
-                  <h2>{title}</h2>
-                  <p>{description}</p>
-                  <p>{date}</p>
-                  <p>{organizer}</p>
-                  <button
-                    onClick={() => handleRegisterClick(_id)}
-                    type="button"
-                  >
-                    Register
-                  </button>
-                  <button onClick={() => handleViewClick(_id)} type="button">
-                    View
-                  </button>
+                <li className={css.boardItem} key={_id}>
+                  <div className={css.eventTextContainer}>
+                    <h2 className={css.boardItemHeading}>{title}</h2>
+                    <p>{description}</p>
+                    <p>Date: {date}</p>
+                    <p>Organizer: {organizer}</p>
+                  </div>
+                  <div className={css.eventButtonsContainer}>
+                    <button
+                      className={css.eventButton}
+                      onClick={() => handleRegisterClick(_id)}
+                      type="button"
+                    >
+                      Register
+                    </button>
+                    <button
+                      className={css.eventButton}
+                      onClick={() => handleViewClick(_id)}
+                      type="button"
+                    >
+                      View
+                    </button>
+                  </div>
                 </li>
               )
             )}
@@ -85,8 +95,10 @@ const BoardPage = () => {
           paginate={paginate}
         />
       </footer>
-      {showRegister && <RegistrationPage eventId={eventId} />}
-      {showView && <ViewPage eventId={eventId} />}
+      {showRegister && (
+        <RegistrationPage eventId={eventId} showRegister={showRegister} />
+      )}
+      {showView && <ViewPage eventId={eventId} showView={showView} />}
     </div>
   );
 };

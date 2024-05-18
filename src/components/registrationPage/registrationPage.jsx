@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getUsers, register } from '../../API/register';
+import css from './registrationPage.module.css';
 
-const RegistrationPage = ({ eventId }) => {
+const RegistrationPage = ({ eventId, showRegister }) => {
   const [users, setUsers] = useState([]);
+  const [isOpen, setIsOpen] = useState(showRegister);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -36,64 +38,82 @@ const RegistrationPage = ({ eventId }) => {
     }
   };
 
+  const toggleMenuByBackdrop = event => {
+    console.log(event.target);
+    const target = event.target;
+    const targetClassName = target.className;
+    if (
+      typeof targetClassName === 'string' &&
+      targetClassName.includes('registrationWrapper')
+    ) {
+      setIsOpen(false);
+    }
+  };
+
   return (
-    <div>
-      <h2>Event registration</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Full name</label>
-        <input
-          // className={css.input}
-          type="text"
-          id="name"
-          name="name"
-          autoComplete="given-name"
-          required
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          // className={css.input}
-          type="email"
-          id="email"
-          name="email"
-          autoComplete="email"
-          required
-        />
-        <label htmlFor="date">Date of birth</label>
-        <input
-          // className={css.input}
-          type="text"
-          id="date"
-          name="date"
-          // autoComplete="date"
-          required
-        />
-        <fieldset>
-          <legend>Where did you hear about this event?</legend>
+    <div
+      className={`${css.registrationWrapper} ${isOpen && css.open}`}
+      onClick={toggleMenuByBackdrop}
+    >
+      <div className={css.registerFormWrapper}>
+        <h2>Event registration</h2>
+        <form className={css.registerForm} onSubmit={handleSubmit}>
+          <label htmlFor="name">Full name</label>
+          <input
+            // className={css.input}
+            type="text"
+            id="name"
+            name="name"
+            autoComplete="given-name"
+            required
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            // className={css.input}
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="email"
+            required
+          />
+          <label htmlFor="date">Date of birth</label>
+          <input
+            // className={css.input}
+            type="text"
+            id="date"
+            name="date"
+            // autoComplete="date"
+            required
+          />
+          <fieldset>
+            <legend>Where did you hear about this event?</legend>
 
-          <div>
-            <input
-              type="radio"
-              id="social"
-              name="radio"
-              value="Social media"
-              // checked
-            />
-            <label htmlFor="social">Social media</label>
-          </div>
+            <div>
+              <input
+                type="radio"
+                id="social"
+                name="radio"
+                value="Social media"
+              />
+              <label htmlFor="social">Social media</label>
+            </div>
 
-          <div>
-            <input type="radio" id="friends" name="radio" value="Friends" />
-            <label htmlFor="friends">Friends</label>
-          </div>
+            <div>
+              <input type="radio" id="friends" name="radio" value="Friends" />
+              <label htmlFor="friends">Friends</label>
+            </div>
 
-          <div>
-            <input type="radio" id="myself" name="radio" value="Myself" />
-            <label htmlFor="myself">Myself</label>
-          </div>
-        </fieldset>
+            <div>
+              <input type="radio" id="myself" name="radio" value="Myself" />
+              <label htmlFor="myself">Myself</label>
+            </div>
+          </fieldset>
 
-        <button type="submit">Submit</button>
-      </form>
+          <button className={css.submitButton} type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

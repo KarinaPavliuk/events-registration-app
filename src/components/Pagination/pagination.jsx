@@ -1,5 +1,6 @@
-import { type } from '@testing-library/user-event/dist/type';
+// import { type } from '@testing-library/user-event/dist/type';
 import React from 'react';
+import css from './paginationPage.module.css';
 
 const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
   const pageNumbers = [];
@@ -10,10 +11,14 @@ const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul className={css.pagination}>
         <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-          <button onClick={() => paginate(currentPage - 1)} type="button">
-            Previous
+          <button
+            className={css.paginationButton}
+            onClick={() => paginate(currentPage - 1)}
+            type="button"
+          >
+            &#x2190;
           </button>
         </li>
         {pageNumbers.map(number => (
@@ -21,7 +26,11 @@ const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
             key={number}
             className={`page-item ${currentPage === number ? 'active' : ''}`}
           >
-            <button onClick={() => paginate(number)} type="button">
+            <button
+              className={css.paginationButton}
+              onClick={() => paginate(number)}
+              type="button"
+            >
               {number}
             </button>
           </li>
@@ -31,8 +40,12 @@ const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
             currentPage === pageNumbers.length ? 'disabled' : ''
           }`}
         >
-          <button onClick={() => paginate(currentPage + 1)} type="button">
-            Next
+          <button
+            className={css.paginationButton}
+            onClick={() => paginate(currentPage + 1)}
+            type="button"
+          >
+            &#x2192;
           </button>
         </li>
       </ul>

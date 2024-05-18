@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getUsers } from '../../API/register';
+import css from './viewPage.module.css';
 
 const ViewPage = ({ eventId }) => {
   const [eventGuests, setEventGuests] = useState([]);
@@ -15,21 +16,23 @@ const ViewPage = ({ eventId }) => {
       }
     };
     fetchUsers();
-  }, []);
+  }, [eventId]);
 
   return (
-    <div>
-      <h2>"Awersome Event" participants</h2>
-      {eventGuests && (
-        <ul>
-          {eventGuests.map(({ _id, name, email }) => (
-            <li key={_id}>
-              <p>{name}</p>
-              <p>{email}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className={css.viewWrapper}>
+      <div className={css.viewContent}>
+        <h2 className={css.viewHeading}>"Awersome Event" participants</h2>
+        {eventGuests && (
+          <ul className={css.viewList}>
+            {eventGuests.map(({ _id, name, email }) => (
+              <li className={css.viewItem} key={_id}>
+                <p>{name}</p>
+                <p>{email}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
