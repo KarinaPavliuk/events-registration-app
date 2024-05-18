@@ -96,9 +96,19 @@ const BoardPage = () => {
         />
       </footer>
       {showRegister && (
-        <RegistrationPage eventId={eventId} showRegister={showRegister} />
+        <RegistrationPage
+          eventId={eventId}
+          showRegister={showRegister}
+          setShowRegister={setShowRegister}
+        />
       )}
-      {showView && <ViewPage eventId={eventId} showView={showView} />}
+      {showView && (
+        <ViewPage
+          eventId={eventId}
+          showView={showView}
+          setShowView={setShowView}
+        />
+      )}
     </div>
   );
 };

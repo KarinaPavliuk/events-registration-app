@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getUsers, register } from '../../API/register';
 import css from './registrationPage.module.css';
 
-const RegistrationPage = ({ eventId, showRegister }) => {
+const RegistrationPage = ({ eventId, showRegister, setShowRegister }) => {
   const [users, setUsers] = useState([]);
   const [isOpen, setIsOpen] = useState(showRegister);
 
@@ -39,7 +39,6 @@ const RegistrationPage = ({ eventId, showRegister }) => {
   };
 
   const toggleMenuByBackdrop = event => {
-    console.log(event.target);
     const target = event.target;
     const targetClassName = target.className;
     if (
@@ -47,6 +46,7 @@ const RegistrationPage = ({ eventId, showRegister }) => {
       targetClassName.includes('registrationWrapper')
     ) {
       setIsOpen(false);
+      setShowRegister(false);
     }
   };
 
