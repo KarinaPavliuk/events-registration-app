@@ -66,10 +66,10 @@ const BoardPage = () => {
                     onClick={() => handleRegisterClick(_id)}
                     type="button"
                   >
-                    register
+                    Register
                   </button>
                   <button onClick={() => handleViewClick(_id)} type="button">
-                    view
+                    View
                   </button>
                 </li>
               )
