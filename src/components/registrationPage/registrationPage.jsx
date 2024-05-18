@@ -34,6 +34,8 @@ const RegistrationPage = ({ eventId, showRegister, setShowRegister }) => {
       alert('You are already registered 😀');
     } else {
       register({ name, email, date, radio, event });
+      setIsOpen(false);
+      setShowRegister(false);
       alert('You are successfully registered 😉');
     }
   };
