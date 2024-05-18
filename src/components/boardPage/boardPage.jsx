@@ -53,7 +53,7 @@ const BoardPage = () => {
       <header className={css.header}>
         <h1>Events</h1>
       </header>
-      <main className="app-main">
+      <main>
         {events && (
           <ul className={css.boardList}>
             {currentItems.map(
@@ -87,7 +87,7 @@ const BoardPage = () => {
           </ul>
         )}
       </main>
-      <footer className="app-footer">
+      <footer>
         <Pagination
           itemsPerPage={itemsPerPage}
           totalItems={events.length}

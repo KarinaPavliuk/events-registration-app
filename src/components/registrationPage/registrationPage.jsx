@@ -62,7 +62,6 @@ const RegistrationPage = ({ eventId, showRegister, setShowRegister }) => {
         <form className={css.registerForm} onSubmit={handleSubmit}>
           <label htmlFor="name">Full name</label>
           <input
-            // className={css.input}
             type="text"
             id="name"
             name="name"
@@ -71,7 +70,6 @@ const RegistrationPage = ({ eventId, showRegister, setShowRegister }) => {
           />
           <label htmlFor="email">Email</label>
           <input
-            // className={css.input}
             type="email"
             id="email"
             name="email"
@@ -79,14 +77,7 @@ const RegistrationPage = ({ eventId, showRegister, setShowRegister }) => {
             required
           />
           <label htmlFor="date">Date of birth</label>
-          <input
-            // className={css.input}
-            type="text"
-            id="date"
-            name="date"
-            // autoComplete="date"
-            required
-          />
+          <input type="text" id="date" name="date" required />
           <fieldset>
             <legend>Where did you hear about this event?</legend>
 
